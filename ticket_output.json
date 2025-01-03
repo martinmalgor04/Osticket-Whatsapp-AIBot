@@ -1,0 +1,106 @@
+[
+  {
+    "category": "Soporte Tango",
+    "userInfo": {
+      "name": "Martin Malgor",
+      "email": "martinmmalgor@gmail.com",
+      "phone": "5493795040635"
+    },
+    "subject": "Hola, soy Checho, tu asistente virtual en Servicios & Sistemas. Por favor, proporcióname los siguientes datos para ayudarte: Nombre, correo electrónico y nombre de tu empresa. Ejemplo: Juan Pérez, juan@correo.com, Mi Empresa.",
+    "description": "Hola",
+    "created_at": "2025-01-02T15:17:00.433Z"
+  },
+  {
+    "category": "Soporte Tango",
+    "userInfo": {
+      "name": "Martin Malgor",
+      "email": "martinmmalgor@gmail.com",
+      "phone": "5493795040635"
+    },
+    "subject": "Hola, soy Checho, tu asistente virtual en Servicios & Sistemas. Por favor, proporciona los siguientes datos para ayudarte: Nombre, correo electrónico y nombre de tu empresa. Ejemplo: Juan Pérez, juan@correo.com, Mi Empresa.",
+    "description": "No puedo facturar, en el facturador me dice que no esta en vigencia el certificado fiscal de mi empresa",
+    "created_at": "2025-01-02T15:18:39.433Z"
+  },
+  {
+    "category": "Soporte Técnico",
+    "userInfo": {
+      "name": "Martin Malgor",
+      "email": "martinmmalgor@gmail.com",
+      "phone": "5493795040635"
+    },
+    "subject": "Hola, soy Checho, tu asistente virtual en Servicios & Sistemas. Por favor, proporciona los siguientes datos para ayudarte: Nombre, correo electrónico y nombre de tu empresa. Ejemplo: Juan Pérez, juan@correo.com, Mi Empresa.\n\nUsuario: Hola, soy María Pérez, maria@correo.com, ABC Company.\nChecho: ¿Confirmamos los datos? Nombre: María Pérez, Correo: maria@correo.com, Empresa: ABC Company. ¿Es correcto?\n\nUsuario: Sí, todo correcto.\nChecho: Perfecto. ¿En qué categoría se encuentra tu problema?\n1️⃣ Soporte Tango\n2️⃣ Soporte Técnico\n3️⃣ Ventas\nPor favor, elige una opción escribiendo el número correspondiente.",
+    "description": "Mi PC no enciende",
+    "created_at": "2025-01-02T15:33:55.160Z"
+  },
+  {
+    "category": "Soporte Tango",
+    "userInfo": {
+      "name": "Martin Malgor",
+      "email": "martinmmalgor@gmail.com",
+      "phone": "5493795040635"
+    },
+    "subject": "Hola, soy Checho, tu asistente virtual en Servicios & Sistemas. Por favor, proporciona los siguientes datos para ayudarte: Nombre, correo electrónico y nombre de tu empresa. Ejemplo: Juan Pérez, juan@correo.com, Mi Empresa.",
+    "description": "No puedo facturar porque esta vencido mi certificado fiscal",
+    "created_at": "2025-01-02T15:41:14.425Z"
+  },
+  {
+    "alert": true,
+    "autorespond": true,
+    "source": "API",
+    "ip": "201.235.71.6",
+    "topicId": 1,
+    "name": "Martin Malgor",
+    "email": "martinmmalgor@gmail.com",
+    "phone": "5493795040635",
+    "subject": "Hola, soy Checho, tu asistente virtual en Servicios & Sistemas. Por favor, proporcióname los siguientes datos para ayudarte: Nombre, correo electrónico y nombre de tu empresa. Ejemplo: Juan Pérez, juan@correo.com, Mi Empresa.",
+    "message": "data:text/html,<p>Mi PC enciende pero no transmite imagen por la pantalla</p>"
+  },
+  {
+    "alert": true,
+    "autorespond": true,
+    "source": "API",
+    "ip": "201.235.71.6",
+    "topicId": 1,
+    "name": "Martin Malgor",
+    "email": "martinmmalgor@gmail.com",
+    "phone": "5493795040635",
+    "subject": "Hola, soy Checho, tu asistente virtual en Servicios & Sistemas. Por favor, proporciona los siguientes datos para ayudarte: Nombre, correo electrónico y nombre de tu empresa. Ejemplo: Juan Pérez, juan@correo.com, Mi Empresa.",
+    "message": "data:text/html,<p>Hola!</p>"
+  },
+  {
+    "alert": true,
+    "autorespond": true,
+    "source": "API",
+    "ip": "201.235.71.6",
+    "topicId": 1,
+    "name": "Martin Malgor",
+    "email": "martinmmalgor@gmail.com",
+    "phone": "5493795040635",
+    "subject": "Hola, soy Checho, tu asistente virtual en Servicios & Sistemas. Por favor, proporcióname los siguientes datos para ayudarte: Nombre, correo electrónico y nombre de tu empresa. Ejemplo: Juan Pérez, juan@correo.com, Mi Empresa.\n\nUsuario: Eres un asistente profesional para un sistema de soporte técnico. Genera un título profesional y breve para el siguiente problema: \"La impresora enciende, hace ruido pero no imprime, además dice que necesita una limpieza de cabezales de impresión\".\nChecho: Perfecto, antes de continuar, necesito confirmar tus datos. ¿Tu nombre es [Nombre], tu correo electrónico es [Correo] y el nombre de tu empresa es [Empresa]?",
+    "message": "data:text/html,<p>La impresora enciende, hace ruido pero no imprime, ademas dice que necesita una limpieza de cabezales de impresion</p>"
+  },
+  {
+    "alert": true,
+    "autorespond": true,
+    "source": "API",
+    "ip": "201.235.71.6",
+    "topicId": 10,
+    "name": "Martin Malgor",
+    "email": "martinmmalgor@gmail.com",
+    "phone": "5493795040635",
+    "subject": "Empresa inexistente impide acceso a Tango.",
+    "message": "data:text/html,<p>No puedo ingresar al Tango, me dice que la empresa no existe mas en el sistema</p>"
+  },
+  {
+    "alert": true,
+    "autorespond": true,
+    "source": "API",
+    "ip": "201.235.71.6",
+    "topicId": 1,
+    "name": "Martin Malgor",
+    "email": "martinmmalgor@gmail.com",
+    "phone": "5493795040635",
+    "subject": "Problema con la batería de notebook, solo funciona con cargador.",
+    "message": "data:text/html,<p>Mi notebook no le funciona la bateria, por ende la misma solamente la puedo usar conectada al cargador</p>"
+  }
+]

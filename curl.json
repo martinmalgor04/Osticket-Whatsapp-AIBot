@@ -1,0 +1,28 @@
+curl -X POST https://soporte.serviciosysistemas.com.ar/upload/api/tickets.json \
+-H "Content-Type: application/json" \
+-H "X-API-Key: D951143585240FD52148880C656781B5" \
+-d '{
+    "alert": true,
+    "autorespond": true,
+    "source": "API",
+    "topicId": 3,
+    "name": "Martin Malgor",
+    "email": "martin@serviciosysistemas.com.ar",
+    "phone": "123456789X123",
+    "ip": "201.235.71.6",
+    "subject": "Test API pruebas",
+    "message": "data:text/html,<p>Probando temas de ayuda Text</p>"
+}'
+
+'{
+    "alert": true,
+    "autorespond": true,
+    "source": "API",
+    "name": "Martin Malgor",
+    "email": "martinmmalgor@gmail.com",
+    "phone": "123456789X123",
+    "subject": "Prueba API Osticket",
+    "ip": "201.235.71.6",
+    "message": "data:text/plain,Probando no me maten",
+    "topicId": "1" 
+}'
