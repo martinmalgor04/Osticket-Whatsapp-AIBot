@@ -24,7 +24,7 @@ const createTicket = async (ticketData) => {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-API-Key': '3D298CFE9C8012CB000830CCFCECB405', // API Key
+                    'X-API-Key': 'cambialawacho', // API Key
                 },
             }
         );
