@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-
 // Función para crear un ticket genérico
 const createTicket = async (ticketData) => {
     try {
@@ -17,6 +16,8 @@ const createTicket = async (ticketData) => {
             ...ticketData,
         };
 
+        console.log('Payload enviado a la API de osTicket:', JSON.stringify(payload, null, 2));
+
         // Realiza la solicitud a la API de OSTicket
         const response = await axios.post(
             'http://192.168.85.129/osticket/upload/api/tickets.json',
@@ -24,13 +25,13 @@ const createTicket = async (ticketData) => {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-API-Key': 'cambialawacho', // API Key
+                    'X-API-Key': '3D298CFE9C8012CB000830CCFCECB405', // Clave API
                 },
             }
         );
 
         console.log('Ticket creado con éxito:', response.data);
-        return response.data; // Devuelve el ID del ticket creado
+        return response.data.ticket_id; // Devuelve el ID del ticket creado
     } catch (error) {
         console.error('Error creando el ticket:', error.response?.data || error.message);
         throw new Error('Error al crear el ticket');
