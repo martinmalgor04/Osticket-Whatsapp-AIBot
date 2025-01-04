@@ -21,7 +21,7 @@ function createTicket(nameUser, mailUser, subjectUser, messageUser, topicIdUser)
     // Configuración de la API
     osTicketAPI(
         {
-            API_KEY: '734697C8A806BEBD1EA38E215A8BC81C', // Clave API
+            API_KEY: '3D298CFE9C8012CB000830CCFCECB405', // Clave API
             INSTALL_URL_PATH: 'http://192.168.85.129/osticket/upload', // URL de OSTicket
             ALERT: true, // Enviar alertas
             AUTO_RESPOND: true, // Respuestas automáticas

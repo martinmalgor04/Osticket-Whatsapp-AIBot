@@ -102,5 +102,17 @@
     "phone": "5493795040635",
     "subject": "Problema con la batería de notebook, solo funciona con cargador.",
     "message": "data:text/html,<p>Mi notebook no le funciona la bateria, por ende la misma solamente la puedo usar conectada al cargador</p>"
+  },
+  {
+    "alert": true,
+    "autorespond": true,
+    "source": "API",
+    "ip": "201.235.71.6",
+    "topicId": 10,
+    "name": "Martín Malgor",
+    "email": "martinmmalgor@gmail.com",
+    "phone": "5493795040635",
+    "subject": "¡Problema no especificado!",
+    "message": "data:text/html,<p>Hola</p>"
   }
 ]
