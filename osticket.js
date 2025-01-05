@@ -1,44 +1,6 @@
-const axios = require('axios');
+const osTicketAPI = require('osticket-nodejs-api-wrapper');
 
-// Función para crear un ticket genérico
-const createTicket = async (ticketData) => {
-    try {
-        const defaultData = {
-            alert: true,
-            autorespond: true,
-            source: 'API',
-            ip: '192.168.85.129', // IP fija para el sistema
-        };
-
-        // Combina los datos por defecto con los datos específicos del ticket
-        const payload = {
-            ...defaultData,
-            ...ticketData,
-        };
-
-        console.log('Payload enviado a la API de osTicket:', JSON.stringify(payload, null, 2));
-
-        // Realiza la solicitud a la API de OSTicket
-        const response = await axios.post(
-            'http://192.168.85.129/osticket/upload/api/tickets.json',
-            payload,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-API-Key': '3D298CFE9C8012CB000830CCFCECB405', // Clave API
-                },
-            }
-        );
-
-        console.log('Ticket creado con éxito:', response.data);
-        return response.data.ticket_id; // Devuelve el ID del ticket creado
-    } catch (error) {
-        console.error('Error creando el ticket:', error.response?.data || error.message);
-        throw new Error('Error al crear el ticket');
-    }
-};
-
-// Función para crear un ticket basado en categoría y datos del usuario
+// Función para crear un ticket específico
 const createSpecificTicket = async (category, userData, subject, message) => {
     // Definición de categorías e IDs (topicId)
     const categories = {
@@ -49,24 +11,41 @@ const createSpecificTicket = async (category, userData, subject, message) => {
 
     // Validar que la categoría exista
     if (!categories[category]) {
-        throw new Error(`La categoría "${category}" no es válida.`);
+        throw new Error('La categoría "${category}" no es válida.');
     }
 
-    // Preparar los datos específicos del ticket
-    const ticketData = {
-        topicId: categories[category], // ID de la categoría
+    // Preparar los datos del ticket
+    const formData = {
         name: userData.name, // Nombre del cliente
-        email: userData.email, // Email del cliente
-        phone: userData.phone || '', // Teléfono del cliente (opcional)
-        subject: subject, // Asunto del ticket
-        message: `data:text/html,<p>${message}</p>`, // Mensaje en formato HTML
+        email: userData.email, // Correo electrónico
+        subject: subject, // Asunto
+        message: message, // Descripción
+        topicId: categories[category], // ID de la categoría
     };
 
-    // Llamar a la función de creación genérica
-    return await createTicket(ticketData);
+    // Configuración de la API
+    const apiConfig = {
+        API_KEY: process.env.OSTICKET_API_KEY, // Clave de API desde .env
+        INSTALL_URL_PATH: process.env.OSTICKET_URL, // URL de instalación desde .env
+        ALERT: true, // Alertar al cliente
+        AUTO_RESPOND: true, // Respuesta automática al cliente
+    };
+
+    return new Promise((resolve, reject) => {
+        // Llamada a la API de osTicket
+        osTicketAPI(apiConfig, formData, (err, osTicketId) => {
+            if (err) {
+                console.error('Error creando el ticket:', err);
+                reject(new Error('Error creando el ticket'));
+            } else {
+                console.log('Ticket creado con éxito. ID:', osTicketId);
+                resolve(osTicketId);
+            }
+        });
+    });
 };
 
-// Exportar las funciones para que puedan ser utilizadas en otros módulos
+// Exportar la función para usarla en otros archivos
 module.exports = {
     createSpecificTicket,
 };

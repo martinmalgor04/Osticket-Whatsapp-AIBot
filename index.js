@@ -119,6 +119,7 @@ app.post('/webhook', async (req, res) => {
 1️⃣ Soporte Tango
 2️⃣ Soporte Técnico
 3️⃣ Ventas`
+
                 );
                 return res.sendStatus(200);
             }
@@ -147,7 +148,7 @@ app.post('/webhook', async (req, res) => {
 
                 await sendWhatsappResponse(
                     from,
-                    `${name} Gracias por registrarte! Ahora selecciona el tema de ayuda que necesitas:
+                    `${user.name} Gracias por registrarte! Ahora selecciona el tema de ayuda que necesitas:
 1️⃣ Soporte Tango
 2️⃣ Soporte Técnico
 3️⃣ Ventas`
