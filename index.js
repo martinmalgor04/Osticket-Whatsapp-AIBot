@@ -106,7 +106,7 @@ app.post('/webhook', async (req, res) => {
 
                 await sendWhatsappResponse(
                     from,
-                    'Hola, Soy Checho! Por favor envíame tu nombre, correo y empresa separados por comas (Ejemplo: Juan Perez, juan@correo.com, Mi Empresa).'
+                    'Hola, Soy Checho👋! Por favor envíame tu nombre, correo y empresa separados por comas (Ejemplo: Martin Malgor, martin@gmail.com, Servicios y Sistemas).'
                 );
 
                 return res.sendStatus(200);
@@ -161,7 +161,7 @@ app.post('/webhook', async (req, res) => {
 
             await sendWhatsappResponse(
                 from,
-                'Hola, Soy Checho! Por favor envíame tu nombre, correo y empresa separados por comas (Ejemplo: Juan Perez, juan@correo.com, Mi Empresa).'
+                'Hola, Soy Checho👋! Por favor envíame tu nombre, correo y empresa separados por comas (Ejemplo: Juan Perez, juan@correo.com, Mi Empresa).'
             );
             return res.sendStatus(200);
         }
@@ -178,7 +178,7 @@ app.post('/webhook', async (req, res) => {
 
                 await sendWhatsappResponse(
                     from,
-                    `Elige un tema válido:
+                    `${user.name} Elige un tema de soporte:
 1️⃣ Soporte Tango
 2️⃣ Soporte Técnico
 3️⃣ Ventas`

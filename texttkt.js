@@ -7,8 +7,9 @@ const osTicketAPI = require('osticket-nodejs-api-wrapper');
  * @param {string} subjectUser Asunto del ticket
  * @param {string} messageUser Mensaje detallado del ticket
  * @param {string} topicIdUser ID o nombre del tema en OSTicket
+ * @param {number} usernumber Numero de telefono
  */
-function createTicket(nameUser, mailUser, subjectUser, messageUser, topicIdUser) {
+function createTicket(nameUser, mailUser, subjectUser, messageUser, topicIdUser, usernumber) {
     // Datos del ticket
     const formData = {
         name: nameUser,
@@ -16,6 +17,7 @@ function createTicket(nameUser, mailUser, subjectUser, messageUser, topicIdUser)
         subject: subjectUser,
         message: messageUser,
         topicId: topicIdUser,
+        phone: usernumber,
     };
 
     // Configuración de la API
@@ -40,8 +42,9 @@ function createTicket(nameUser, mailUser, subjectUser, messageUser, topicIdUser)
 // Prueba para crear un ticket
 createTicket(
     'Martin Malgor', // Nombre del cliente
-    'martin@serviciosysistemas.com.ar', // Correo del cliente
+    'martinmmalgor64232@gmail.com', // Correo del cliente
     'Prueba API', // Asunto
     'Probando API WhatsApp', // Mensaje
-    'Soporte Tango' // Tema
+    1, // Tema
+    5493795040635 //Numero
 );
