@@ -4,6 +4,7 @@
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "node-fetch": "^2.7.0",
     "openai": "^4.77.3",
     "osticket-nodejs-api-wrapper": "^1.0.31"
   }

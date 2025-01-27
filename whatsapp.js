@@ -5,10 +5,10 @@ async function sendMessageWhatsapp(data) {
     if (!process.env.WHATSAPP_PHONE_ID || !process.env.WHATSAPP_API_KEY) {
         throw new Error('Las variables de entorno WHATSAPP_PHONE_ID y WHATSAPP_API_KEY son obligatorias');
     }
-
+    
     try {
         const response = await axios.post(
-            `https://graph.facebook.com/v15.0/${process.env.WHATSAPP_PHONE_ID}/messages`,
+            `https://graph.facebook.com/v22.0/${process.env.WHATSAPP_PHONE_ID}/messages`,
             data,
             {
                 headers: {

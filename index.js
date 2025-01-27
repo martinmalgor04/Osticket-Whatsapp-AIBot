@@ -203,7 +203,9 @@ app.post('/webhook', async (req, res) => {
                 console.log(`Procesando descripción del problema: ${text}`);
                 // Construir prompt específico para generar el título del ticket
                 const prompt = `Genera un título profesional y breve para el siguiente problema: "${text}"`;
-                const subject = await generateResponse(prompt); // Llamar a OpenAI
+                const subjectGenerated = await generateResponse(prompt); // Llamar a OpenAI
+                // Concatenar el nombre de la empresa al título generado
+                const subject = `${subjectGenerated} - ${user.company_name}`;
                 console.log(`Título generado por OpenAI: ${subject}`);
 
                 const ticketId = await createSpecificTicket(
