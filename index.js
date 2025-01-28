@@ -71,6 +71,11 @@ app.post('/webhook', async (req, res) => {
 
         if (!from || !text) {
             console.log('Mensaje inválido recibido.');
+            // Enviar mensaje informativo al usuario
+            await sendWhatsappResponse(
+                from,
+                `Disculpe por el momento no puedo recibir audios ni archivos, aunque el equipo se encuentra trabajando para que pronto se pueda!`
+            );
             return res.sendStatus(200);
         }
 

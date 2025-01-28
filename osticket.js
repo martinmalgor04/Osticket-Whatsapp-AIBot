@@ -1,51 +1,58 @@
-const osTicketAPI = require('osticket-nodejs-api-wrapper');
+const request = require('request');
 
 // Función para crear un ticket específico
 const createSpecificTicket = async (category, userData, subject, message) => {
     // Definición de categorías e IDs (topicId)
     const categories = {
-        'Soporte Tango': 10,
-        'Soporte Técnico': 1,
+        'Soporte Tango': 1,
+        'Soporte Técnico': 10,
         'Ventas': 2,
     };
 
     // Validar que la categoría exista
     if (!categories[category]) {
-        throw new Error('La categoría "${category}" no es válida.');
+        throw new Error(`La categoría "${category}" no es válida.`);
     }
 
-    // Preparar los datos del ticket
-    const formData = {
-        name: userData.name, // Nombre del cliente
-        email: userData.email, // Correo electrónico
-        subject: subject, // Asunto
-        message: message, // Descripción
-        topicId: categories[category], // ID de la categoría
+    // Configuración desde variables de entorno
+    const settings = {
+        API_KEY: process.env.OSTICKET_API_KEY,
+        INSTALL_URL_PATH: process.env.OSTICKET_URL,
+        ALERT: true,
+        AUTO_RESPOND: true
     };
 
-    // Configuración de la API
-    const apiConfig = {
-        API_KEY: process.env.OSTICKET_API_KEY, // Clave de API desde .env
-        INSTALL_URL_PATH: process.env.OSTICKET_URL, // URL de instalación desde .env
-        ALERT: true, // Alertar al cliente
-        AUTO_RESPOND: true, // Respuesta automática al cliente
+    // Preparar datos del ticket
+    const formData = {
+        alert: settings.ALERT,
+        autorespond: settings.AUTO_RESPOND,
+        source: 'API',
+        name: userData.name,
+        email: userData.email,
+        phone: userData.phone || '',
+        subject: subject,
+        message: `data:text/html,${message}`,
+        topicId: categories[category]
     };
 
     return new Promise((resolve, reject) => {
-        // Llamada a la API de osTicket
-        osTicketAPI(apiConfig, formData, (err, osTicketId) => {
-            if (err) {
-                console.error('Error creando el ticket:', err);
-                reject(new Error('Error creando el ticket'));
-            } else {
-                console.log('Ticket creado con éxito. ID:', osTicketId);
-                resolve(osTicketId);
+        request.post({
+            url: `${settings.INSTALL_URL_PATH}/api/http.php/tickets.json`,
+            headers: {
+                'X-API-Key': settings.API_KEY
+            },
+            json: true,
+            body: formData
+        }, (error, response, body) => {
+            if (error || response.statusCode !== 201) {
+                console.error('Error al crear ticket:', error || body);
+                reject(error || new Error('Error al crear ticket'));
+                return;
             }
+            console.log('Ticket creado exitosamente:', body);
+            resolve(body);
         });
     });
 };
 
-// Exportar la función para usarla en otros archivos
-module.exports = {
-    createSpecificTicket,
-};
+module.exports = { createSpecificTicket };
