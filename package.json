@@ -6,6 +6,7 @@
     "express": "^4.21.2",
     "node-fetch": "^2.7.0",
     "openai": "^4.77.3",
-    "osticket-nodejs-api-wrapper": "^1.0.31"
+    "osticket-nodejs-api-wrapper": "^1.0.31",
+    "pg": "^8.13.1"
   }
 }

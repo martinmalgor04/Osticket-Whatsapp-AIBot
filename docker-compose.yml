@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: bot_user
+      POSTGRES_PASSWORD: aibot2025
+      POSTGRES_DB: whatsapp_bot
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5432:5432"
+    networks:
+      - whatsapp_network
+
+  whatsapp-bot:
+    build: .
+    container_name: whatsapp_bot
+    restart: always
+    depends_on:
+      - db
+    env_file:
+      - src/.env
+    environment:
+      DATABASE_URL: "postgresql://bot_user:aibot2025@postgres_db:5432/whatsapp_bot"
+    ports:
+      - "3000:3000"
+    networks:
+      - whatsapp_network
+
+volumes:
+  postgres_data:
+
+networks:
+  whatsapp_network:
+    driver: bridge

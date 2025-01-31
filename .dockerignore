@@ -1,0 +1,13 @@
+# Ignorar node_modules (se instalarán dentro del contenedor)
+node_modules
+
+# Ignorar archivos de entorno y credenciales
+.env
+
+# Ignorar carpetas y archivos de prueba o configuración local
+TEST
+.DS_Store
+
+# Ignorar dependencias de Docker
+docker-compose.yml
+.dockerignore
