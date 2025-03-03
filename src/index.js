@@ -183,7 +183,15 @@ app.post('/webhook', async (req, res) => {
                 await registerInteraction(from, text, 'completed');
             } catch (ticketError) {
                 console.error('Error creando ticket:', ticketError);
-                await sendWhatsappResponse(from, 'Lo siento, no pudimos procesar tu solicitud. Inténtalo más tarde.');
+
+                // Registrar interacción fallida y reiniciar flujo
+                await registerInteraction(from, text, 'start');
+                
+                // Enviar mensaje de error y reinicio
+                await sendWhatsappResponse(
+                    from,
+                    'Lo siento, no pudimos procesar tu solicitud. Inténtalo más tarde. Si necesitas ayuda, vuelve a iniciar el proceso enviando "Hola".'
+                );                
             }
             return res.sendStatus(200);
         }
