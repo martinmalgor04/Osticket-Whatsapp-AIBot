@@ -1,20 +1,16 @@
-const request = require('request');
+const axios = require('axios');
 
-// Función para crear un ticket específico
 const createSpecificTicket = async (category, userData, subject, message) => {
-    // Definición de categorías e IDs (topicId)
     const categories = {
         'Soporte Tango': 1,
         'Soporte Técnico': 10,
         'Ventas': 2,
     };
 
-    // Validar que la categoría exista
     if (!categories[category]) {
-        throw new Error(`La categoría "${category}" no es válida.`);
+        throw new Error(`Categoría inválida: ${category}`);
     }
 
-    // Configuración desde variables de entorno
     const settings = {
         API_KEY: process.env.OSTICKET_API_KEY,
         INSTALL_URL_PATH: process.env.OSTICKET_URL,
@@ -22,37 +18,52 @@ const createSpecificTicket = async (category, userData, subject, message) => {
         AUTO_RESPOND: true
     };
 
-    // Preparar datos del ticket
     const formData = {
         alert: settings.ALERT,
         autorespond: settings.AUTO_RESPOND,
         source: 'API',
         name: userData.name,
         email: userData.email,
-        phone: userData.phone || '',
+        phone: parseInt(userData.whatsapp_number) || 0,
         subject: subject,
         message: `data:text/html,${message}`,
         topicId: categories[category]
     };
 
-    return new Promise((resolve, reject) => {
-        request.post({
-            url: `${settings.INSTALL_URL_PATH}/api/http.php/tickets.json`,
-            headers: {
-                'X-API-Key': settings.API_KEY
-            },
-            json: true,
-            body: formData
-        }, (error, response, body) => {
-            if (error || response.statusCode !== 201) {
-                console.error('Error al crear ticket:', error || body);
-                reject(error || new Error('Error al crear ticket'));
-                return;
+    try {
+        const response = await axios.post(
+            `${settings.INSTALL_URL_PATH}/api/tickets.json`,
+            formData,
+            {
+                headers: {
+                    'X-API-Key': settings.API_KEY,
+                    'Content-Type': 'application/json'
+                }
             }
-            console.log('Ticket creado exitosamente:', body);
-            resolve(body);
+        );
+
+        // Manejar respuesta de texto plano (ej: "123456")
+        let ticketId = response.data.toString().trim();
+
+        if (!ticketId) {
+            throw new Error('La API respondió con un ID vacío');
+        }
+
+        console.log(`✅ Ticket creado. ID: ${ticketId}`);
+        return ticketId;
+
+    } catch (error) {
+        console.error('❌ Error en la API:', {
+            status: error.response?.status,
+            data: error.response?.data,
+            request: {
+                url: `${settings.INSTALL_URL_PATH}/api/tickets.json`,
+                payload: formData
+            }
         });
-    });
+
+        throw new Error(`Error al crear ticket: ${error.response?.data || error.message}`);
+    }
 };
 
 module.exports = { createSpecificTicket };
